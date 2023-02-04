@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Core.Services
 {
 
-    //bura düzeltildi hakanım
+    //ders 27 notları
     public interface IService<T> where T : class
     {
         Task<T> GetByIdAsync(int id);
