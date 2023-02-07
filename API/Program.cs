@@ -1,19 +1,21 @@
 using Core.Repositories;
 using Core.Services;
 using Core.UnitOfWorks;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Repository;
 using Repository.Repositories;
 using Repository.UnitOfWorks;
 using Service.Mapping;
 using Service.Services;
+using Service.Validations;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidatior>());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
