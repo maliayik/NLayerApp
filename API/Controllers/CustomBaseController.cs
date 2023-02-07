@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-   
+    [Route("api/[controller]")]
+    [ApiController]
     public class CustomBaseController : ControllerBase
     {
+
         [NonAction]
         public IActionResult CreateActionResult<T>(CustomResponseDto<T> response)
         {
