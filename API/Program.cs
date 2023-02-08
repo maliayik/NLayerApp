@@ -1,4 +1,5 @@
 using API.Filters;
+using API.Middlewares;
 using Core.Repositories;
 using Core.Services;
 using Core.UnitOfWorks;
@@ -58,6 +59,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCustomException();
 
 app.UseAuthorization();
 
