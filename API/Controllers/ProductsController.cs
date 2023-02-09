@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using API.Filters;
+using AutoMapper;
 using Core;
 using Core.DTOs;
 using Core.Services;
@@ -33,6 +34,8 @@ namespace API.Controllers
             var productsDtos = _mapper.Map<List<ProductDto>>(products.ToList());
             return CreateActionResult(CustomResponseDto<List<ProductDto>>.Success(200, productsDtos));
         }
+
+        [ServiceFilter(typeof(NotFoundFilter<Product>))]
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
