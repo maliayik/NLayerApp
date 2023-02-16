@@ -95,5 +95,16 @@ namespace Web.Controllers
 
         }
 
+        public async Task<IActionResult> Remove(int id)
+        {
+            var products = await _productService.GetByIdAsync(id);
+
+            await _productService.RemoveAsync(products);
+
+            return RedirectToAction(nameof(Index));
+
+        }
+
+
     }
 }
