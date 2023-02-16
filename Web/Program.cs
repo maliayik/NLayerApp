@@ -6,6 +6,7 @@ using Repository;
 using Service.Mapping;
 using Service.Validations;
 using System.Reflection;
+using Web;
 using Web.Modules;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,7 @@ builder.Services.AddControllersWithViews().AddFluentValidation(x => x.RegisterVa
 
 
 builder.Services.AddAutoMapper(typeof(MapProfile));
+builder.Services.AddScoped(typeof(NotFoundFilter<>));
 
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
@@ -30,6 +32,7 @@ builder.Host.UseServiceProviderFactory
 builder.Host.ConfigureContainer<ContainerBuilder>(ContainerBuilder => ContainerBuilder.RegisterModule(new RepoServiceModule()));
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

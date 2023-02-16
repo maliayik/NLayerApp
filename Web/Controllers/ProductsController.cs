@@ -59,7 +59,7 @@ namespace Web.Controllers
 
         }
 
-
+        [ServiceFilter(typeof(NotFoundFilter<Product>))]
         public async Task<IActionResult> Update(int id)
         {
             var products = await _productService.GetByIdAsync(id);
