@@ -11,7 +11,7 @@ using System.Reflection;
 using Module = Autofac.Module;
 namespace Web.Modules
 {
-    public class RepoServiceModule:Module
+    public class RepoServiceModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
@@ -19,7 +19,7 @@ namespace Web.Modules
             builder.RegisterGeneric(typeof(Service<>)).As(typeof(IService<>)).InstancePerLifetimeScope();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
 
-            var apiAssembly=Assembly.GetExecutingAssembly();
+            var apiAssembly = Assembly.GetExecutingAssembly();
 
             var repoAssembly = Assembly.GetAssembly(typeof(AppDbContext));
 
@@ -31,7 +31,7 @@ namespace Web.Modules
             builder.RegisterAssemblyTypes(apiAssembly, repoAssembly, serviceAssembly).Where(x => x.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerLifetimeScope();
 
 
-            
+
         }
 
     }

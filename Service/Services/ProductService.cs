@@ -4,11 +4,6 @@ using Core.DTOs;
 using Core.Repositories;
 using Core.Services;
 using Core.UnitOfWorks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service.Services
 {
@@ -25,7 +20,7 @@ namespace Service.Services
         public async Task<List<ProductWithCategoryDto>> GetProductsWitCategory()
         {
             var product = await _productRepository.GetProductsWitCategory();
-            var productsDto= _mapper.Map<List<ProductWithCategoryDto>>(product);
+            var productsDto = _mapper.Map<List<ProductWithCategoryDto>>(product);
             return productsDto;
         }
     }

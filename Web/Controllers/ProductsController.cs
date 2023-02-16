@@ -20,17 +20,17 @@ namespace Web.Controllers
             _categoryService = categoryService;
         }
 
-        public  async Task<IActionResult> Index()
-        {            
+        public async Task<IActionResult> Index()
+        {
             return View(await _productService.GetProductsWitCategory());
         }
 
 
         public async Task<IActionResult> Save()
         {
-            var categories =await _categoryService.GetAllAsync();
+            var categories = await _categoryService.GetAllAsync();
 
-            var categoriesDto= _mapper.Map<List<CategoryDto>>(categories.ToList());
+            var categoriesDto = _mapper.Map<List<CategoryDto>>(categories.ToList());
 
             ViewBag.categories = new SelectList(categoriesDto, "Id", "Name");
 
@@ -48,15 +48,15 @@ namespace Web.Controllers
                 await _productService.AddAsync(_mapper.Map<Product>(productDto));
                 return RedirectToAction(nameof(Index));
             }
-            
-            var categories =await _categoryService.GetAllAsync();
+
+            var categories = await _categoryService.GetAllAsync();
 
             var categoriesDto = _mapper.Map<List<CategoryDto>>(categories.ToList());
 
             ViewBag.categories = new SelectList(categoriesDto, "Id", "Name");
 
             return View();
-            
+
         }
 
 
@@ -68,7 +68,7 @@ namespace Web.Controllers
 
             var categoriesDto = _mapper.Map<List<CategoryDto>>(categories.ToList());
 
-            ViewBag.categories = new SelectList(categoriesDto, "Id", "Name",products.CategoryId);
+            ViewBag.categories = new SelectList(categoriesDto, "Id", "Name", products.CategoryId);
 
             return View(_mapper.Map<ProductDto>(products));
 
@@ -79,7 +79,7 @@ namespace Web.Controllers
 
         public async Task<IActionResult> Update(ProductDto productDto)
         {
-             if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 await _productService.UpdateAsync(_mapper.Map<Product>(productDto));
                 return RedirectToAction(nameof(Index));

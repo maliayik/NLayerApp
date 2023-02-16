@@ -7,12 +7,7 @@ using Core.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Service.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Caching
 {
@@ -33,7 +28,7 @@ namespace Caching
 
             if (!_memoryCache.TryGetValue(CacheProductKey, out _))
             {
-                _memoryCache.Set( CacheProductKey,_repository.GetProductsWitCategory().Result);
+                _memoryCache.Set(CacheProductKey, _repository.GetProductsWitCategory().Result);
             }
         }
 
@@ -65,7 +60,7 @@ namespace Caching
 
         public Task<Product> GetByIdAsync(int id)
         {
-            var product = _memoryCache.Get<List<Product>>(CacheProductKey).FirstOrDefault(x=> x.Id== id);
+            var product = _memoryCache.Get<List<Product>>(CacheProductKey).FirstOrDefault(x => x.Id == id);
             if (product == null)
             {
                 throw new NotFoundException($"{typeof(Product).Name} ({id}) not found");
@@ -76,8 +71,8 @@ namespace Caching
 
         public Task<List<ProductWithCategoryDto>> GetProductsWitCategory()
         {
-            var products =  _memoryCache.Get<IEnumerable<Product>>(CacheProductKey);
-            var productsWithCategoryDto=_mapper.Map<List<ProductWithCategoryDto>>(products);
+            var products = _memoryCache.Get<IEnumerable<Product>>(CacheProductKey);
+            var productsWithCategoryDto = _mapper.Map<List<ProductWithCategoryDto>>(products);
             return Task.FromResult(productsWithCategoryDto);
         }
 
@@ -110,7 +105,7 @@ namespace Caching
 
         public async Task CacheAllProductsAsync()
         {
-            _memoryCache.Set(CacheProductKey,await _repository.GetAll().ToListAsync());
+            _memoryCache.Set(CacheProductKey, await _repository.GetAll().ToListAsync());
         }
     }
 }

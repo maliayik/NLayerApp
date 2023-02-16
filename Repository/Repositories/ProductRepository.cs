@@ -1,11 +1,6 @@
 ﻿using Core;
 using Core.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Repository.Repositories
 {
@@ -17,7 +12,7 @@ namespace Repository.Repositories
 
         public async Task<List<Product>> GetProductsWitCategory()
         {
-            return await _context.Products.Include(x=> x.Category).ToListAsync();
+            return await _context.Products.Include(x => x.Category).ToListAsync();
         }
     }
 }

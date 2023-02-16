@@ -1,11 +1,6 @@
 ﻿using Core;
 using Core.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Repository.Repositories
 {
@@ -17,7 +12,7 @@ namespace Repository.Repositories
 
         public async Task<Category> GetSingleCategoryByIdWithProductsAsync(int categoryId)
         {
-           return await _context.Categories.Include(x=> x.Products).Where(x=> x.Id== categoryId).SingleOrDefaultAsync();
+            return await _context.Categories.Include(x => x.Products).Where(x => x.Id == categoryId).SingleOrDefaultAsync();
         }
     }
 }

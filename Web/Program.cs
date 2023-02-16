@@ -1,12 +1,12 @@
-using Autofac.Extensions.DependencyInjection;
 using Autofac;
-using Web.Modules;
+using Autofac.Extensions.DependencyInjection;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Repository;
-using System.Reflection;
 using Service.Mapping;
-using FluentValidation.AspNetCore;
 using Service.Validations;
+using System.Reflection;
+using Web.Modules;
 
 var builder = WebApplication.CreateBuilder(args);
 
