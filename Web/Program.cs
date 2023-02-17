@@ -8,6 +8,7 @@ using Service.Validations;
 using System.Reflection;
 using Web;
 using Web.Modules;
+using Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,19 @@ builder.Services.AddControllersWithViews().AddFluentValidation(x => x.RegisterVa
 
 builder.Services.AddAutoMapper(typeof(MapProfile));
 builder.Services.AddScoped(typeof(NotFoundFilter<>));
+
+builder.Services.AddHttpClient<ProductApiService>(options =>
+{
+    options.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+
+builder.Services.AddHttpClient<CategoryApiService>(options =>
+{
+    options.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+
+
+
 
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
