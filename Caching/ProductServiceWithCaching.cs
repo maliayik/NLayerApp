@@ -28,7 +28,7 @@ namespace Caching
 
             if (!_memoryCache.TryGetValue(CacheProductKey, out _))
             {
-                _memoryCache.Set(CacheProductKey, _repository.GetProductsWitCategory().Result);
+                _memoryCache.Set(CacheProductKey, _repository.GetProductsWithCategory().Result);
             }
         }
 
@@ -69,7 +69,7 @@ namespace Caching
             return Task.FromResult(product);
         }
 
-        public Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductsWitCategory()
+        public Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductsWithCategory()
         {
             var products = _memoryCache.Get<IEnumerable<Product>>(CacheProductKey);
             var productsWithCategoryDto = _mapper.Map<List<ProductWithCategoryDto>>(products);

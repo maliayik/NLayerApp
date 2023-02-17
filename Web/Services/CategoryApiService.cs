@@ -1,4 +1,6 @@
-﻿namespace Web.Services
+﻿using Core.DTOs;
+
+namespace Web.Services
 {
     public class CategoryApiService
     {
@@ -7,6 +9,9 @@
         public CategoryApiService(HttpClient httpClient)
         {
             _httpClient = httpClient;
-        }
+        }    
+
+
     }
+
 }

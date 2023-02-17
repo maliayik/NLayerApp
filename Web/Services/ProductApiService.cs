@@ -1,4 +1,6 @@
-﻿namespace Web.Services
+﻿using Core.DTOs;
+
+namespace Web.Services
 {
     public class ProductApiService
     {
@@ -8,5 +10,14 @@
         {
             _httpClient = httpClient;
         }
+
+        public async Task<List<ProductWithCategoryDto>> GetProductsWithCategory()
+        {
+
+        }
+
+
+
+
     }
 }
