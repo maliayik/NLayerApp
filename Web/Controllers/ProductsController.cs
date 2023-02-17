@@ -22,7 +22,7 @@ namespace Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _productService.GetProductsWitCategory());
+            return View((await _productService.GetProductsWitCategory()).Data);
         }
 
 
