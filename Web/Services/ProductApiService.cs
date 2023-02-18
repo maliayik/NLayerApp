@@ -14,7 +14,7 @@ namespace Web.Services
 
         public async Task<List<ProductWithCategoryDto>> GetProductsWitCategoryAsync()
         {
-            var response = await _httpClient.GetFromJsonAsync<CustomResponseDto<List<ProductWithCategoryDto>>>("products/GetProductsWitCategory");
+            var response = await _httpClient.GetFromJsonAsync<CustomResponseDto<List<ProductWithCategoryDto>>>("api/products/GetProductsWitCategory");
             return response.Data;
         }
 
