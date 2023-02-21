@@ -1,5 +1,6 @@
 ﻿using Core;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,35 +48,16 @@ namespace Repository
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-
-            foreach (var item in ChangeTracker.Entries())
-            {
-                if (item.Entity is BaseEntity entityReference)
-                {
-                    switch (item.State)
-                    {
-                        case EntityState.Added:
-                            {
-                                Entry(entityReference).Property(x => x.UpdatedDate).IsModified = false;
-                                entityReference.CreatedDate = DateTime.Now;
-                                break;
-                            }
-                        case EntityState.Modified:
-                            {
-                                Entry(entityReference).Property(x => x.CreatedDate).IsModified = false;
-                                entityReference.UpdatedDate = DateTime.Now;
-                                break;
-                            }
-
-                    }
-                }
-            }
-
+            UpdateChangeTracker();
             return base.SaveChangesAsync(cancellationToken);
-
         }
 
         public override int SaveChanges()
+        {
+            UpdateChangeTracker();
+            return base.SaveChanges();
+        }
+        public void UpdateChangeTracker()
         {
             foreach (var item in ChangeTracker.Entries())
             {
@@ -99,9 +81,6 @@ namespace Repository
                     }
                 }
             }
-
-            return base.SaveChanges();
-
         }
     }
 }   

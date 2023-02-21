@@ -57,5 +57,25 @@ namespace API.Controllers
         }
 
 
+        [HttpPost("SaveAll")]
+
+        public async Task<IActionResult> SaveAll(List<ProductDto> productDtos)
+        {
+            return CreateActionResult(await _productServiceWithDto.AddRangeAsync(productDtos));
+        }
+
+        [HttpDelete("RemoveAll")]
+
+        public async Task<IActionResult> RemoveAll(List<int> ids)
+        {
+            return CreateActionResult(await _productServiceWithDto.RemoveRangeAsync(ids));
+        }
+
+        [HttpDelete("Any/{id}")]
+
+        public async Task<IActionResult> Any(int id)
+        {
+            return CreateActionResult(await _productServiceWithDto.AnyAsync(x=> x.Id ==id));
+        }
     }
 }
