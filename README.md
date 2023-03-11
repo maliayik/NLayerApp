@@ -3,7 +3,7 @@ This project was generated with .Net7-API
 
 # Getting Started
 
-This project is a multi-layered Web API application developed on Multitier architecture and best practices.
+This project is a multi-layered Web API application developed on  and best practices.
 
 # Code scaffolding
 
